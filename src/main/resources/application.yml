@@ -1,0 +1,63 @@
+server:
+  port: 7777
+spring:
+  application:
+    name: keycloak-service-provider
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/kafka_poc"
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 100       # Max connections in the pool
+      minimum-idle: 10            # Minimum idle connections
+      idle-timeout: 30000         # Time (ms) to keep idle connections
+      connection-timeout: 30000   # Max wait time (ms) for a connection
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      show-sql: true
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format:-sql: true
+
+
+  kafka:
+    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+logging:
+  level:
+    org.apache.kafka: off
+
+saml2:
+  rp:
+    signing:
+      # This pair was generated with the following command:
+      # openssl req -newkey rsa:2048 -nodes -keyout rp-key.key -x509 -days 365 -out rp-certificate.crt
+      cert-location: /config/rp-certificate.crt
+      key-location: /config/rp-key.key
+  ap:
+    signing-cert: MIIClzCCAX8CBgGUMehwKjANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDARkdXN0MB4XDTI1MDEwNDE1MjAwNFoXDTM1MDEwNDE1MjE0NFowDzENMAsGA1UEAwwEZHVzdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALZLnLOnUvw1zKhzDlX4FklSPJUeWf37ik9FevIDGFMupGIdHdSEGbs7z4YZcg9zLUhX2x8bWYsMne1Mu2FoGMtqb/Aevfm3BvQULn8Mspeecliai0scB8iYxgLXZfiuxFk6KptJAiJBpkANE2J3P1tnNc8Q1TpBgi5opxegNuA9/mZepSvZ5/kWoogV13oJIItPJ68Vblt94sJWAmKiC9N8tiHBGpNZNWqtqeI/dU/dAosTdvR677s8p6pJUw7muBqLK+SdWLSdw2bDoCucWKPa8wYPwu2hZinFGsh47OJs18pR6tdQDZoe/eSpWIvcuu03MA+aKLkWtQxqKnJXmzMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAiEYrJzkjRm93okYqxBNmFCbRYKvOkjevEaoizoFFSKpNWE3G+pQ+nT+V4LQmPeR48r4CT4zG6Rr67tq3jx/csv/XM9gOlorxM5roHEEeEC1S64LgNIE6Ijt64Ys5kdL3FcHCJCr4dkgxLGQ4wu3pCMn/xrZkkEEDMH+JcyR/y3blbVYi0NkCms5mYq5hs94fbvXWO7twS2a0BMrjp9hylyFADmt2cyppyW+GA00MtzN80F2dkOvviB0DYyBzb3NfpsUOx9666gY7sYuA3HwEjH4buxl3CEOYV8TQ1JkZbeXUR7rsgKrPeC50Kh87LoSyUT4D+LQ4P55XUdJMFlOq3w==
+    metadata:
+      location: "http://localhost:8080/realms/dust/protocol/saml/descriptor"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
