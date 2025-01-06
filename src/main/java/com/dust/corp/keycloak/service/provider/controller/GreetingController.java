@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/greetings")
 public class GreetingController {
 
+    @GetMapping("/home")
+    public String home() {
+        return "I'm at Home!";
+    }
+
     @GetMapping("/user")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String greeting() {
