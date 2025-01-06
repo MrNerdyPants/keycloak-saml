@@ -31,23 +31,29 @@
 	</properties>
 
 	<repositories>
-		<!-- Shibboleth Repository -->
+<!--		&lt;!&ndash; Shibboleth Repository &ndash;&gt;-->
+<!--		<repository>-->
+<!--			<id>shibboleth</id>-->
+<!--			<url>https://build.shibboleth.net/maven/releases</url>-->
+<!--		</repository>-->
+
 		<repository>
-			<id>shibboleth</id>
-			<url>https://build.shibboleth.net/maven/releases</url>
+			<id>shibboleth-build-releases</id>
+			<name>Shibboleth Build Releases Repository</name>
+			<url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
 		</repository>
 
-		<!-- Default Maven Central Repository -->
-		<repository>
-			<id>central</id>
-			<url>https://repo.maven.apache.org/maven2</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+<!--		&lt;!&ndash; Default Maven Central Repository &ndash;&gt;-->
+<!--		<repository>-->
+<!--			<id>central</id>-->
+<!--			<url>https://repo.maven.apache.org/maven2</url>-->
+<!--			<releases>-->
+<!--				<enabled>true</enabled>-->
+<!--			</releases>-->
+<!--			<snapshots>-->
+<!--				<enabled>false</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
 
 
 	</repositories>
@@ -59,24 +65,16 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-saml2-service-provider</artifactId>
-<!--			<version>6.1.2</version>-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcpkix-jdk15on</artifactId>
-			<version>1.70</version>
-		</dependency>
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk15on</artifactId>
-			<version>1.70</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-saml2-service-provider</artifactId>
 		</dependency>
 
 

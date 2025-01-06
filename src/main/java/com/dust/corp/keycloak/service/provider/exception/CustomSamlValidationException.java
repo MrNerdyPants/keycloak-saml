@@ -1,4 +1,4 @@
-package com.dust.corp.keycloak.service.provider;
+package com.dust.corp.keycloak.service.provider.exception;
 
 import org.springframework.security.saml2.Saml2Exception;
 
