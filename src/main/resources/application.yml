@@ -4,6 +4,37 @@ spring:
   application:
     name: keycloak-service-provider
   security:
+    oauth2:
+      client:
+        provider:
+          dust:
+            issuer-uri: http://localhost:8080/realms/dust
+        registration:
+          keycloak:
+            provider: dust
+            authorization-grant-type: authorization_code
+            client-id: oidc-springboot
+            client-secret: cgOlhcd13XmCx7nJKraqXutEoMW5Qncn
+            scope: openid
+#      client:
+#        provider:
+#          dust:
+#            issuer-uri: https://localhost:8080/realms/dust
+#        registration:
+#          keycloak:
+#            client-id: oidc-springboot
+#            client-secret: cgOlhcd13XmCx7nJKraqXutEoMW5Qncn
+#            scope: openid, profile, email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+#            authorization-grant-type: authorization_code
+#            # In older versions you might want to add /auth in the url
+#            authorization-uri: http://localhost:8080/realms/dust/protocol/openid-connect/auth
+#            token-uri: http://localhost:8080/realms/dust/protocol/openid-connect/token
+#            user-info-uri: http://localhost:8080/realms/dust/protocol/openid-connect/userinfo
+#            user-name-attribute: admin
+#          provider:
+#            keycloak:
+#              issuer-uri: http://localhost:8080/auth/realms/dust
     saml2:
       relyingparty:
         registration:
