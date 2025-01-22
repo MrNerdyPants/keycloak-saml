@@ -1,6 +1,7 @@
 package com.dust.corp.keycloak.service.provider.config;
 
 //import com.fasterxml.jackson.databind.util.Converter;
+
 import org.opensaml.security.x509.X509Support;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +17,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.converter.RsaKeyConverters;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.core.oidc.OidcIdToken;
-import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.saml2.core.Saml2X509Credential;
 import org.springframework.security.saml2.provider.service.registration.InMemoryRelyingPartyRegistrationRepository;
 import org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistration;
@@ -32,12 +29,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.io.InputStream;
 import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPrivateKey;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
@@ -148,7 +141,7 @@ public class SecurityConfig {
         });
 
         http.authorizeHttpRequests(requests -> {
-            requests.requestMatchers("/", "/favicon.ico").permitAll();
+            requests.requestMatchers("/", "/sample", "/oauth/login", "/oauth/callback", "/favicon.ico").permitAll();
             requests.requestMatchers("/nice").hasAuthority("NICE");
             requests.anyRequest().denyAll();
         });

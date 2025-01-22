@@ -10,6 +10,10 @@ spring:
           dust:
             issuer-uri: http://localhost:8080/realms/dust
         registration:
+          google:
+            client-id: 544938391639-1uvq535eroa9nbd5mkfsrd1ui7o7a3dg.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:7777/oauth/callback
           keycloak:
             provider: dust
             authorization-grant-type: authorization_code

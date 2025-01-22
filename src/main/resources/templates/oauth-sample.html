@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Google OAuth Configurable Consent</title>
+</head>
+<body>
+<h1>Select Permissions</h1>
+<form action="/oauth/login" method="get">
+    <label>
+        <input type="checkbox" name="email" value="email"> Email
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="profile" value="profile"> Profile
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="drive" value="https://www.googleapis.com/auth/drive"> Drive
+    </label>
+    <br>
+    <button type="submit">Login with Google</button>
+</form>
+</body>
+</html>
